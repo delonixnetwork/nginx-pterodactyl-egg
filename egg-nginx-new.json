@@ -1,0 +1,31 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2025-12-19T14:34:10+01:00",
+    "name": "Nginx New",
+    "author": "info@finniedj.nl",
+    "description": "An egg to host any Website.",
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/the-mw-dev\/nginx-pterodactyl:latest": "ghcr.io\/the-mw-dev\/nginx-pterodactyl:latest"
+    },
+    "file_denylist": [],
+    "startup": ".\/install.sh",
+    "config": {
+        "files": "{\r\n    \"nginx\/conf.d\/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"    listen \": \"    listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{\r\n    \"custom\": false,\r\n    \"location\": \"logs\/latest.log\"\r\n}",
+        "stop": "^C^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\ncd \/mnt\/server\r\ngit clone https:\/\/github.com\/delonixnetwork\/nginx-pterodactyl-egg .\/temp\r\ncp -r .\/temp\/nginx \/mnt\/server\/\r\ncp .\/temp\/install.sh \/mnt\/server\/\r\nchmod +x \/mnt\/server\/install.sh\r\nrm -rf .\/temp\r\nmkdir \/mnt\/server\/tmp\r\nmkdir \/mnt\/server\/logs\r\nmkdir \/mnt\/server\/webroot",
+            "container": "ghcr.io\/parkervcp\/yolks:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": []
+}
