@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/ash
 cd /home/container
-MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
-echo ":/home/container$ ${MODIFIED_STARTUP}"
-${MODIFIED_STARTUP}
+rm -rf /home/container/tmp/*
+echo "✓ Сервер запущен"
+/usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/
